@@ -1,0 +1,22 @@
+{
+  "name": "request-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derek-oneill/request-log.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/derek-oneill/request-log/issues"
+  },
+  "homepage": "https://github.com/derek-oneill/request-log#readme",
+  "dependencies": {
+    "@elastic/elasticsearch": "5.x"
+  }
+}
