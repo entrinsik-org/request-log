@@ -15,20 +15,21 @@ exports.register = function(server, opts, next) {
             timestamp: Date.now(),
             tenant: request.auth.credentials.tenant,
             path: request.path,
-            execTime: request.time
+            execTime: request.time,
+            method: request.method,
+            host: request.info.host
         };
 
-        const response = await client.index({
-            id: `${doc.tenant}-${doc.timestamp}`,
-            index: opts.index,
-            type: 'entry',
-            body: doc
-        });
-
-        console.log(response.body);
-
-        if(response.body['_shards'].successful){
-            return h.continue();
+        try{
+            await client.index({
+                id: `${doc.tenant}-${doc.timestamp}`,
+                index: opts.index,
+                type: 'entry',
+                body: doc
+            });
+        }
+        catch(err) {
+            console.error(`Error logging request: ${err}`)
         }
 
         return h.continue();
