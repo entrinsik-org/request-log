@@ -7,17 +7,19 @@ exports.register = function(server, opts, next) {
 
     server.ext('onPreResponse', async (request, h) => {
         const eligible = request.auth.credentials && regexes.reduce((acc, regex)=> acc || regex.test(request.path), false);
-        
+
         if(!eligible){
             return h.continue();
         }
+        const now = Date.now();
         const doc = {
-            timestamp: Date.now(),
+            timestamp: now,
             tenant: request.auth.credentials.tenant,
             path: request.path,
             execTime: request.time,
             method: request.method,
-            host: request.info.host
+            host: request.info.host,
+            responsetime: (now - request.info.received)
         };
 
         try{
