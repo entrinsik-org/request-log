@@ -19,7 +19,8 @@ exports.register = function(server, opts, next) {
             execTime: request.time,
             method: request.method,
             host: request.info.host,
-            responsetime: (now - request.info.received)
+            responsetime: (now - request.info.received),
+            principal: request.auth.credentials.username
         };
 
         try{
