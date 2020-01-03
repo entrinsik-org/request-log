@@ -1,5 +1,5 @@
 {
-  "name": "request-log",
+  "name": "@entrinsik/request-log",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
